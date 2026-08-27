@@ -1,32 +1,34 @@
 # KANT-2026-TIL
 
-2026.8.4 ~ 2027.5.14.
-> AI Engineer Bootcamp 학습 및 프로젝트 기록
+**August 4, 2026 – May 14, 2027**
+
+> AI Engineer Bootcamp Learning and Project Records
 
 ## About
 
+With the goal of becoming an **AI Engineer**, I study **Python, Git, SQL, Data Analysis, AI, Backend Development**, and more.
 
-AI Engineer 를 목표로
-Python, Git, SQL, Data Analysis, AI, Backend 등을 학습하며
-학습 과정과 프로젝트 문제 해결 과정을 기록합니다.
+This repository documents my learning journey and the problem-solving process throughout my projects.
 
 ## Purpose
 
-이 저장소의 TIL은 단순 학습 기록이 아니라
+The TILs in this repository are not simply daily learning records.
 
+They are intended to serve as a personal **Knowledge Base** that connects:
+
+```text
 Learning
 → Practice
 → Problem Solving
 → Project Application
 → Portfolio
 → Resume
-
-로 연결되는 개인 Knowledge Base를 목적으로 합니다.
+```
 
 ## Structure
 
 ```text
-00_meta
+00_meta/
 01_git/GitHub/
 02_python/
 ...
@@ -34,7 +36,7 @@ Learning
 
 ## TIL Format
 
-각 TIL은 다음 내용을 기본으로 기록합니다.
+Each TIL is generally organized using the following format:
 
 ```text
 Today's Goal
@@ -45,12 +47,19 @@ Troubleshooting
 Key Takeaways
 Reflection
 Evidence
-File Naming
+```
+
+## File Naming
+
+```text
 YYMMDD_topic.ipynb
+```
 
-Example:
+### Examples
 
+```text
 260812_python-function.ipynb
 260813_git-branch.ipynb
-Project Records
 ```
+
+## Project Records
