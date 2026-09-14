@@ -1,11 +1,18 @@
 name: Sync TIL to GitHub Pages Blog
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
     paths:
       - "**/*.md"
+      - "**/*.png"
+      - "**/*.jpg"
+      - "**/*.jpeg"
+      - "**/*.gif"
+      - "**/*.webp"
+      - ".github/workflows/sync-to-blog.yml"
 
 jobs:
   sync:
@@ -24,12 +31,33 @@ jobs:
           token: ${{ secrets.BLOG_REPO_TOKEN }}
           path: blog-repo
 
-      - name: Copy TIL markdown files
+      - name: Copy TIL files for the blog
         run: |
           mkdir -p blog-repo/_til
-          rsync -av --delete \
+          rsync -av \
             --exclude ".git" \
             --exclude ".github" \
+            --exclude ".DS_Store" \
+            --exclude ".env" \
+            --exclude ".python-version" \
+            --exclude "README.md" \
+            --exclude "pyproject.toml" \
+            --exclude "uv.lock" \
+            --exclude "src/" \
+            --exclude "data/" \
+            --exclude "archive/" \
+            --exclude "*.csv" \
+            --exclude "*.ipynb" \
+            --exclude "*.py" \
+            --exclude "*.pth" \
+            --include "*/" \
+            --include "*.md" \
+            --include "*.png" \
+            --include "*.jpg" \
+            --include "*.jpeg" \
+            --include "*.gif" \
+            --include "*.webp" \
+            --exclude "*" \
             til-repo/ blog-repo/_til/
 
       - name: Commit and push changes
