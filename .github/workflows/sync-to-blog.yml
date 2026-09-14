@@ -34,7 +34,7 @@ jobs:
       - name: Copy TIL files for the blog
         run: |
           mkdir -p blog-repo/_til
-          rsync -av \
+          rsync -av --delete --delete-excluded \
             --exclude ".git" \
             --exclude ".github" \
             --exclude ".DS_Store" \
