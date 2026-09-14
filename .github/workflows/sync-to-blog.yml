@@ -1,0 +1,48 @@
+name: Sync TIL to GitHub Pages Blog
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "**/*.md"
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout TIL repo
+        uses: actions/checkout@v4
+        with:
+          path: til-repo
+
+      - name: Checkout GitHub Pages repo
+        uses: actions/checkout@v4
+        with:
+          repository: mjlee0914/mjlee0914.github.io
+          token: ${{ secrets.BLOG_REPO_TOKEN }}
+          path: blog-repo
+
+      - name: Copy TIL markdown files
+        run: |
+          mkdir -p blog-repo/_til
+          rsync -av --delete \
+            --exclude ".git" \
+            --exclude ".github" \
+            til-repo/ blog-repo/_til/
+
+      - name: Commit and push changes
+        run: |
+          cd blog-repo
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          if git diff --quiet; then
+            echo "No changes to sync."
+            exit 0
+          fi
+
+          git add _til
+          git commit -m "Sync TIL notes"
+          git push
