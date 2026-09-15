@@ -12,6 +12,9 @@ on:
       - "**/*.jpeg"
       - "**/*.gif"
       - "**/*.webp"
+      - "**/*.html"
+      - "**/*.css"
+      - "**/*.js"
       - ".github/workflows/sync-to-blog.yml"
 
 jobs:
@@ -57,6 +60,9 @@ jobs:
             --include "*.jpeg" \
             --include "*.gif" \
             --include "*.webp" \
+            --include "*.html" \
+            --include "*.css" \
+            --include "*.js" \
             --exclude "*" \
             til-repo/ blog-repo/_til/
 
