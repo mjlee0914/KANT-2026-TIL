@@ -1,0 +1,222 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
+
+:root {
+    --primary-font-size: 16px;
+    --primary-font-family: "Pretendard Bold", "Pretendard Bold Placeholder", sans-serif;
+    --primary-max-layout-width: 1200px;
+    --primary-min-layout-width: 360px;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: var(--primary-font-family);
+}
+
+html {
+    font-size: var(--primary-font-size);
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    margin: 0;
+}
+
+ul, ol, dl, dt, dd {
+    margin: 0;
+    padding: 0;
+}
+
+button {
+    border: 0;
+}
+
+/* header */
+.header1 {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 16px 24px 0px;
+}
+
+.header1-container {
+    max-width: var(--primary-max-layout-width);
+    min-width: var(--primary-min-layout-width);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header1-container .right {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.header1-container .right a {
+    padding-left: 36px;
+}
+
+.frame1 p {
+    font-family: sans-serif;
+    font-size: 13px;
+    color: #A4A7B0;
+    line-height: 20px;
+}
+
+.header2 nav {
+    display: flex;
+    height: 60px;
+    padding: 10px 0;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+
+.header2-container {
+    max-width: var(--primary-max-layout-width);
+    min-width: var(--primary-min-layout-width);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin: 0;
+}
+
+#total-lecture {
+    color: #FB062F;
+}
+
+.frame2 h5 { 
+    font-family: var(--primary-font-family);
+    font-weight: 600; 
+    font-size: 16px;   
+    color: #0C0E13;
+    background-color: #FFF;
+}
+
+/* main */
+.section1 {
+    width: 1905px;
+    height: 581px;       
+    display: flex;
+    gap: 28px;
+    background: linear-gradient(
+        to bottom,
+        #d1effa 0%,
+        #f9f9fb 50%
+    ); 
+    font-family: var(--primary-font-family); 
+    font-size: 17px;      
+}
+
+
+.section1box {
+    display: flex;
+    align-items: center;
+}
+
+video {
+    width: 335px;
+    height: 213px;
+}
+
+
+.section1box article {
+    width: 370px;
+    height: 427px;
+    border-radius: 15px;
+    overflow: hidden;
+    background-color: #FFF;
+    margin: 0 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.section2 {
+    width: 1905px;
+    height: 516px;
+    font-family: sans-serif; 
+    font-size: 17px;     
+    align-items: center; 
+}
+
+.section2box {
+    max-width: var(--primary-max-layout-width);
+    min-width: var(--primary-min-layout-width);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.card {
+    max-width: var(--primary-max-layout-width);
+    min-width: var(--primary-min-layout-width);
+    background: #f9f9fb;
+    border-radius: 12px;
+    place-content: flex-start;
+    align-items: center;
+    width: 570px;
+    height: min-content;
+    padding: 14px 50px;
+    display: flex;
+    position: relative;
+}
+
+.card img {
+    width: 163px;
+    height: 120px;
+}
+
+.card h3 {
+    font-family: var(--primary-font-family);
+    font-weight: 600; 
+    font-size: 20px;
+}
+
+.card span {
+    font-family: var(--primary-font-family);
+    font-size: 14px;
+    color:#858793;
+    line-height: 21px;    
+}
+
+.card-text {
+    display: flex;
+    flex-direction: column;
+}
+
+#minih3 {
+    font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
+    font-weight: 600; 
+    font-size: 17px;
+}
+
+
+.more-button {
+    background-color: #F5F6F7 ;
+
+}
+
+/* question button */
+.question-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 23;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    padding: 0;
+}
+
+.question-button img {
+    width: 145px;
+    height: auto;
+    display: block;    
+}
+
+/* footer */
+.footbox1 img {
+    width: 100%;
+}
