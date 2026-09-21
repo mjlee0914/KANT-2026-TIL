@@ -76,11 +76,12 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          if git diff --quiet; then
+          git add _til
+
+          if git diff --cached --quiet; then
             echo "No changes to sync."
             exit 0
           fi
 
-          git add _til
           git commit -m "Sync TIL notes"
           git push
