@@ -70,6 +70,48 @@ jobs:
             --exclude "*" \
             til-repo/ blog-repo/_til/
 
+      # A collection entry is published at /til/<month>/<note>/, while its
+      # copied screenshots are served at /til/<month>/image.png.  Let authors
+      # keep writing ![](image.png) next to the TIL source file; convert only
+      # existing sibling image references in the blog copy to the public URL.
+      - name: Fix copied TIL image links
+        run: |
+          python3 - <<'PY'
+          import re
+          from pathlib import Path
+
+          image_extensions = {".png", ".jpg", ".jpeg", ".gif", ".webp", ".avif", ".ico"}
+          image_link = re.compile(r"(!\[[^\]]*\]\()([^\s)]+)(\s+(?:\"[^\"]*\"|'[^']*'))?(\))")
+          updated = []
+
+          for note in Path("blog-repo/_til").rglob("*.md"):
+              original = note.read_text(encoding="utf-8")
+
+              def public_image_link(match):
+                  prefix, target, title, suffix = match.groups()
+                  clean_target = target.split("?", 1)[0].split("#", 1)[0]
+                  candidate = note.parent / clean_target
+
+                  # Only a bare, local sibling image is ambiguous on a
+                  # collection detail page. URLs and deliberate paths stay as-is.
+                  if (
+                      "/" not in clean_target
+                      and Path(clean_target).suffix.lower() in image_extensions
+                      and candidate.is_file()
+                  ):
+                      return f"{prefix}../{target}{title or ''}{suffix}"
+                  return match.group(0)
+
+              revised = image_link.sub(public_image_link, original)
+              if revised != original:
+                  note.write_text(revised, encoding="utf-8")
+                  updated.append(str(note.relative_to("blog-repo")))
+
+          if updated:
+              print("Adjusted collection image links:")
+              print("\n".join(updated))
+          PY
+
       - name: Commit and push changes
         run: |
           cd blog-repo

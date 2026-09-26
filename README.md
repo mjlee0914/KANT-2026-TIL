@@ -124,9 +124,10 @@ YYMMDD_topic.ipynb
 
 ```text
 1. Write today's TIL in this repository.
-2. Commit and push to main.
-3. GitHub Actions syncs Markdown files to mjlee0914.github.io.
-4. The note appears on the TIL page of the blog.
+2. Put each screenshot in the same monthly folder as its TIL and reference it normally, for example `![설명](image-40.png)`.
+3. Commit and push to main.
+4. GitHub Actions copies both the TIL and its supported image files, then automatically adjusts same-folder image links for the blog URL.
+5. The note appears on the TIL page of the blog.
 ```
 
 ## Project Records
