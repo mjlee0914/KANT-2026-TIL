@@ -17,6 +17,7 @@ on:
       - "**/*.html"
       - "**/*.css"
       - "**/*.js"
+      - "2026-09/streamlit-study/gpt.py"
       - ".github/workflows/sync-to-blog.yml"
 
 jobs:
@@ -53,7 +54,6 @@ jobs:
             --exclude "archive/" \
             --exclude "*.csv" \
             --exclude "*.ipynb" \
-            --exclude "*.py" \
             --exclude "*.pth" \
             --include "*/" \
             --include "*.md" \
@@ -67,6 +67,8 @@ jobs:
             --include "*.html" \
             --include "*.css" \
             --include "*.js" \
+            --include "2026-09/streamlit-study/gpt.py" \
+            --exclude "*.py" \
             --exclude "*" \
             til-repo/ blog-repo/_til/
 
