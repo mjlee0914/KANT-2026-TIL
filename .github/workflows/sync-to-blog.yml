@@ -79,6 +79,13 @@ jobs:
             til-repo/2026-09/streamlit-study/ \
             blog-repo/til/2026-09/streamlit-study/
 
+      - name: Publish Todo List preview at its public URL
+        run: |
+          mkdir -p blog-repo/til/2026-09/todo-list-preview
+          rsync -av --delete \
+            til-repo/2026-09/todo-list-preview/ \
+            blog-repo/til/2026-09/todo-list-preview/
+
       # A collection entry is published at /til/<month>/<note>/, while its
       # copied screenshots are served at /til/<month>/image.png.  Let authors
       # keep writing ![](image.png) next to the TIL source file; convert only
@@ -127,7 +134,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          git add _til til/2026-09/streamlit-study
+          git add _til til/2026-09/streamlit-study til/2026-09/todo-list-preview
 
           if git diff --cached --quiet; then
             echo "No changes to sync."
