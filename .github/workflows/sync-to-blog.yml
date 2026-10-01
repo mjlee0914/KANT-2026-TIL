@@ -86,6 +86,13 @@ jobs:
             til-repo/2026-09/todo-list-preview/ \
             blog-repo/til/2026-09/todo-list-preview/
 
+      - name: Publish October 1 JavaScript demos at their public URL
+        run: |
+          mkdir -p blog-repo/til/2026-10/261001-preview
+          rsync -av --delete \
+            til-repo/2026-10/261001-preview/ \
+            blog-repo/til/2026-10/261001-preview/
+
       # A collection entry is published at /til/<month>/<note>/, while its
       # copied screenshots are served at /til/<month>/image.png.  Let authors
       # keep writing ![](image.png) next to the TIL source file; convert only
@@ -134,7 +141,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          git add _til til/2026-09/streamlit-study til/2026-09/todo-list-preview
+          git add _til til/2026-09/streamlit-study til/2026-09/todo-list-preview til/2026-10/261001-preview
 
           if git diff --cached --quiet; then
             echo "No changes to sync."
