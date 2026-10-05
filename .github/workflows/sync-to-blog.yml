@@ -37,6 +37,13 @@ jobs:
           token: ${{ secrets.BLOG_REPO_TOKEN }}
           path: blog-repo
 
+      - name: Checkout Todo List project
+        uses: actions/checkout@v4
+        with:
+          repository: aiagentohms/todo_list_3th
+          ref: bebb1a97de08aa4a2108c0efde8c5d8a30f7fb5d
+          path: todo-repo
+
       - name: Copy TIL files for the blog
         run: |
           mkdir -p blog-repo/_til
@@ -93,6 +100,13 @@ jobs:
             til-repo/2026-10/261001-preview/ \
             blog-repo/til/2026-10/261001-preview/
 
+      - name: Publish October 2 Todo List preview at its public URL
+        run: |
+          mkdir -p blog-repo/til/2026-10/261002-preview/mjlee
+          rsync -av --delete --exclude ".DS_Store" \
+            todo-repo/mjlee/ \
+            blog-repo/til/2026-10/261002-preview/mjlee/
+
       # A collection entry is published at /til/<month>/<note>/, while its
       # copied screenshots are served at /til/<month>/image.png.  Let authors
       # keep writing ![](image.png) next to the TIL source file; convert only
@@ -141,7 +155,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          git add _til til/2026-09/streamlit-study til/2026-09/todo-list-preview til/2026-10/261001-preview
+          git add _til til/2026-09/streamlit-study til/2026-09/todo-list-preview til/2026-10/261001-preview til/2026-10/261002-preview
 
           if git diff --cached --quiet; then
             echo "No changes to sync."
