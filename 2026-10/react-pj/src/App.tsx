@@ -1,21 +1,45 @@
 import { Header } from "./components/Header";
 import { HabitForm } from "./components/HabitForm";
 import { HabitList } from "./components/HabitList";
-import { useState } from "react";
-import { addHours } from "date-fns";
+import { HabitProvider } from "./context/HabitProvider";
+import { useEffect, useState } from "react";
+import { addWeeks, eachDayOfInterval, startOfWeek, endOfWeek } from "date-fns";
 
 export default function App() {
-  const [habits, setHabits] = useState<Habit[]>([]);
+  const [weekOffset, setWeekOffset] = useState(0);
+  const week = addWeeks(new Date(), weekOffset);
 
-  function addHabit(name: string) {
-    setHabits([...habits, { id: crypto.randomUUID(), name }]);
-  }
+  const visibleDates = eachDayOfInterval({
+    start: startOfWeek(week, { weekStartsOn: 1 }),
+    end: endOfWeek(week, { weekStartsOn: 1 }),
+  });
+
+  useEffect(() => {
+    function handler() {
+      console.log(weekOffset);
+    }
+    document.addEventListener("click", handler);
+
+    return () => {
+      document.removeEventListener("click", handler);
+    };
+  }, [weekOffset]);
 
   return (
     <div className="max-w-2x1 mx-auto p-4 flex-col gap-4">
-      <Header />
-      <HabitForm addHabit={addHabit} />
-      <HabitList habits={habits} />
+      <HabitProvider>
+        <Header
+          visibleDates={visibleDates}
+          onNext={() => setWeekOffset((o) => o + 1)}
+          onPrev={() => setWeekOffset((o) => o - 1)}
+        />
+        <HabitForm />
+        <HabitList visibleDates={visibleDates} />
+      </HabitProvider>
+      <footer>
+        github repo:
+        https://github.com/mjlee0914/react-practice-habit-tracker.git
+      </footer>
     </div>
   );
 }

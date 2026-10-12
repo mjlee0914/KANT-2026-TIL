@@ -1,19 +1,13 @@
+import { useHabits, type Habit } from "../context/useHabits";
 import { Button } from "./Button";
-import {
-  startOfWeek,
-  endOfWeek,
-  eachDayOfInterval,
-  format,
-  isFuture,
-} from "date-fns";
-
-export type Habit = { id: string; name: string };
+import { format, isFuture, isSameDay, subDays } from "date-fns";
 
 type HabitListProps = {
-  habits: Habit[];
+  visibleDates: Date[];
 };
 
-export function HabitList({ habits }: HabitListProps) {
+export function HabitList({ visibleDates }: HabitListProps) {
+  const { habits } = useHabits();
   if (habits.length === 0) {
     return (
       <p className="text-center text-zinc-500 py-12">
@@ -24,30 +18,36 @@ export function HabitList({ habits }: HabitListProps) {
   return (
     <div className="flex flex-col gap-3">
       {habits.map((habit) => (
-        <HabitItem key={habit.id} habit={habit}></HabitItem>
+        <HabitItem key={habit.id} habits={habit} visibleDates={visibleDates} />
       ))}
     </div>
   );
 }
 
 type HabitItemProps = {
-  habit: Habit;
+  habits: Habit;
+  visibleDates: Date[];
 };
 
-function HabitItem({ habit }: HabitItemProps) {
-  const visibleDates = eachDayOfInterval({
-    start: startOfWeek(new Date(), { weekStartsOn: 1 }),
-    end: endOfWeek(new Date(), { weekStartsOn: 1 }),
-  });
+function HabitItem({ habits, visibleDates }: HabitItemProps) {
+  const { deleteHabit, toggleHabit } = useHabits();
+
+  const streak = getStreak(habits.completions);
 
   return (
     <div className="rounded-2xl bg-zinc-800 p-4 flex-col m-4">
       <div className="flex items-center justify-between">
         <div className="flex gap-3 items-center m-3">
-          <span className="font-medium">{habit.name}</span>
-          <span className="text-sm text-amber-400">🔥 3</span>
+          <span className="font-medium">{habits.name}</span>
+          {streak !== 0 && (
+            <span className="text-sm text-amber-400">🔥 {streak}</span>
+          )}
         </div>
-        <Button variant="ghost-destructive" className="text-sm">
+        <Button
+          onClick={() => deleteHabit(habits.id)}
+          variant="ghost-destructive"
+          className="text-sm"
+        >
           Delete
         </Button>
       </div>
@@ -57,6 +57,12 @@ function HabitItem({ habit }: HabitItemProps) {
             className="flex flex-1 flex-col items-center gap-0.4 rounded-lg text-xs"
             key={date.toISOString()}
             disabled={isFuture(date)}
+            variant={
+              habits.completions.some((d) => isSameDay(date, d))
+                ? "primary"
+                : "secondary"
+            }
+            onClick={() => toggleHabit(habits.id, date)}
           >
             <span className="font-medium">{format(date, "EEE")} </span>
             <span>{format(date, "d")}</span>
@@ -65,4 +71,15 @@ function HabitItem({ habit }: HabitItemProps) {
       </div>
     </div>
   );
+}
+
+function getStreak(completions: Date[]) {
+  let streak = 0;
+  let date = new Date();
+
+  while (completions.some((c) => isSameDay(c, date))) {
+    streak++;
+    date = subDays(date, 1);
+  }
+  return streak;
 }
