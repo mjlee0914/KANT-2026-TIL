@@ -16,7 +16,7 @@ members = [
 [[package]]
 name = "04-machine-learning"
 version = "0.1.0"
-source = { editable = "04_machine-learning" }
+source = { editable = "2026-08/04_machine-learning" }
 dependencies = [
     { name = "matplotlib" },
     { name = "numpy" },
