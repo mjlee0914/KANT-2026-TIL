@@ -6,7 +6,15 @@
 
 ## About
 
-With the goal of becoming an **AI Engineer**, I study **Python, Git, SQL, Data Analysis, Machine Learning, Backend Development**, and more.
+With the goal of becoming an **AI Engineer**, I study the full path from Python to production AI services:
+
+```text
+Python · Git · SQL · Data Analysis · Machine Learning
+→ Frontend (HTML/CSS · JavaScript · TypeScript · React · Next.js)
+→ Backend (FastAPI · SQLAlchemy · PostgreSQL)
+→ LLM Applications (RAG · Vector Search · Evaluation)
+→ AWS / Deployment
+```
 
 This repository documents my learning journey, practice notes, troubleshooting records, and project problem-solving process.
 
@@ -25,19 +33,17 @@ Learning
 → Resume
 ```
 
-## Blog Sync
+## Learning Log
 
-This repository is the source repository for my TIL notes.
-
-Daily TIL notes are written here first. Markdown files pushed to this repository can be synced to my GitHub Pages blog:
-
-```text
-KANT-2026-TIL
-→ mjlee0914.github.io/_til/
-→ https://mjlee0914.github.io/til/
-```
-
-The GitHub Pages repository already has a Jekyll `_til` collection ready for these notes.
+| Period | Topics | Notes |
+| --- | --- | --- |
+| 2026-08 | Git & GitHub workflow, Python basics, NumPy/Pandas/Matplotlib | [01_Git-GitHub](01_Git-GitHub/), [02_python](02_python/), [03_numpy-pandas-matplotlib](03_numpy-pandas-matplotlib/) |
+| 2026-08 ~ 09 | Machine Learning: regression, classification, PyTorch RNN, Attention/Transformer, Hugging Face | [04_machine-learning](04_machine-learning/) |
+| 2026-09 | SQL & PostgreSQL, transactions, Supabase team study | [05_SQL](05_SQL/), [supabase-team-study](supabase-team-study/) |
+| 2026-09 | HTML/CSS layouts, JavaScript fundamentals, prototype, DOM, Streamlit | [2026-09](2026-09/) |
+| 2026-10 | JS events & async, TypeScript, React/Next.js, team frontend project (FE-project-teamD), Supabase SSR | [2026-10](2026-10/) |
+| 2026-10 ~ 11 | FastAPI: routing, Jinja2, dependencies, middleware, SQLAlchemy, 4-layer architecture, auth, DDD, team backend project (BE-project-teamD) | [2026-10](2026-10/), [2026-11](2026-11/) |
+| 2026-11 | RAG: embeddings, chunking, hybrid search (BM25 + vector, RRF), re-ranking, RAG evaluation, PGVector | [2026-11](2026-11/) |
 
 ## Structure
 
@@ -48,85 +54,97 @@ The GitHub Pages repository already has a Jekyll `_til` collection ready for the
 03_numpy-pandas-matplotlib/      # Data analysis basics
 04_machine-learning/             # Machine learning notes and experiments
 05_SQL/                          # SQL and database notes
-2026-09/                         # Monthly TIL markdown notes
+2026-09/                         # Monthly TIL notes (from September 2026)
+2026-10/
+2026-11/
+  ├── YYMMDD_TIL.md              # Daily TIL note
+  ├── image-N.png                # Screenshots referenced by TILs in the same folder
+  ├── images/                    # Diagrams (e.g. SVG) for a TIL
+  └── YYMMDD-preview/            # Static demo pages published to the blog
 supabase-team-study/             # Supabase team study materials
+src/                             # Python package scaffold (uv project)
+.github/workflows/               # Blog sync workflow
 ```
 
 ## TIL Format
 
-Each TIL is generally organized using the following format:
+Each daily TIL generally follows this structure:
 
 ```text
-Today's Goal
-Key Concepts
-Practice
-Daily Quest
-Troubleshooting
-Key Takeaways
-Reflection
-Evidence
+Front matter (title, date, tags, description)
+목차 (Table of Contents)
+1. ~ N.  Topic sections (concept → example/practice → troubleshooting)
+오늘의 핵심 정리 (Key Takeaways)
+회고 (Reflection)
 ```
+
+## Blog Sync
+
+This repository is the source repository for my TIL notes.
+
+Daily TIL notes are written here first. When Markdown or image files are pushed to `main`, the GitHub Actions workflow [`sync-to-blog.yml`](.github/workflows/sync-to-blog.yml) syncs them to my GitHub Pages blog:
+
+```text
+KANT-2026-TIL
+→ mjlee0914.github.io/_til/
+→ https://mjlee0914.github.io/til/
+```
+
+What gets synced:
+
+- **Synced**: `*.md`, images (`png`, `jpg`, `gif`, `webp`, `svg`, ...), and static web files (`html`, `css`, `js`)
+- **Not synced**: `*.ipynb`, `*.py`, `*.csv`, `*.pth`, `src/`, `data/`, `archive/`, `README.md`
+- **Preview folders** (e.g. `2026-10/261030-preview/`) are published at their own public URL, such as `https://mjlee0914.github.io/til/2026-10/261030-preview/`. Each new preview folder needs its own step in the workflow.
 
 ## Blog Post Format
 
-For TIL notes that should appear on the blog, use Markdown and include front matter at the top of the file.
+For TIL notes that should appear on the blog, include front matter at the top of the file.
 
 ```markdown
 ---
-title: SQL Subquery 정리
-date: 2026-09-14
-tags: [SQL, Subquery]
-style: fill
+title: 261116 TIL - RAG 검색 고도화와 평가
+date: 2026-11-16
+tags: [TIL, RAG, LLM, Hybrid Search, Evaluation]
+style: border
 color: primary
-description: WHERE절 서브쿼리를 공부하며 정리한 내용.
+description: BM25, 하이브리드 검색, Re-ranking, RAG 평가를 정리했다.
 ---
 
-## Today's Goal
+## 목차
 
 Write your note here.
 ```
 
-Recommended location:
+Location and blog copy:
 
 ```text
-2026-09/260914_sql-subquery.md
-```
-
-When synced to the blog, this note is copied into:
-
-```text
-mjlee0914.github.io/_til/2026-09/260914_sql-subquery.md
+2026-11/261116_TIL.md
+→ mjlee0914.github.io/_til/2026-11/261116_TIL.md
 ```
 
 ## File Naming
 
-For Markdown TIL notes:
-
 ```text
-YYMMDD_topic.md
-```
-
-For notebook practice files:
-
-```text
-YYMMDD_topic.ipynb
+YYMMDD_TIL.md          # Daily TIL note (topic goes in the front matter title)
+YYMMDD_topic.ipynb     # Notebook practice file
+YYMMDD-preview/        # Static demo folder for that day's TIL
 ```
 
 ### Examples
 
 ```text
-260908_sql-join.md
-260914_sql-subquery.md
-260812_python-function.ipynb
+261116_TIL.md
+260826_linear-regression1.ipynb
+261030-preview/
 ```
 
 ## Daily Workflow
 
 ```text
-1. Write today's TIL in this repository.
-2. Put each screenshot in the same monthly folder as its TIL and reference it normally, for example `![설명](image-40.png)`.
-3. Commit and push to main.
-4. GitHub Actions copies both the TIL and its supported image files, then automatically adjusts same-folder image links for the blog URL.
+1. Write today's TIL in the current monthly folder (e.g. 2026-11/261116_TIL.md).
+2. Put each screenshot in the same monthly folder and reference it normally, for example `![설명](image-40.png)`.
+3. Commit on a branch, open a PR, and merge it into main.
+4. GitHub Actions copies the TIL and its image files, then adjusts same-folder image links for the blog URL.
 5. The note appears on the TIL page of the blog.
 ```
 
