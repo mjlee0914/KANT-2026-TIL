@@ -37,9 +37,9 @@ Learning
 
 | Period | Topics | Notes |
 | --- | --- | --- |
-| 2026-08 | Git & GitHub workflow, Python basics, NumPy/Pandas/Matplotlib | [01_Git-GitHub](01_Git-GitHub/), [02_python](02_python/), [03_numpy-pandas-matplotlib](03_numpy-pandas-matplotlib/) |
-| 2026-08 ~ 09 | Machine Learning: regression, classification, PyTorch RNN, Attention/Transformer, Hugging Face | [04_machine-learning](04_machine-learning/) |
-| 2026-09 | SQL & PostgreSQL, transactions, Supabase team study | [05_SQL](05_SQL/), [supabase-team-study](supabase-team-study/) |
+| 2026-08 | Git & GitHub workflow, Python basics, NumPy/Pandas/Matplotlib | [01_Git-GitHub](2026-08/01_Git-GitHub/), [02_python](2026-08/02_python/), [03_numpy-pandas-matplotlib](2026-08/03_numpy-pandas-matplotlib/) |
+| 2026-08 ~ 09 | Machine Learning: regression, classification, PyTorch RNN, Attention/Transformer, Hugging Face | [2026-08/04_machine-learning](2026-08/04_machine-learning/), [2026-09/04_machine-learning](2026-09/04_machine-learning/) |
+| 2026-09 | SQL & PostgreSQL, transactions, Supabase team study | [05_SQL](2026-09/05_SQL/), [supabase-team-study](2026-09/supabase-team-study/) |
 | 2026-09 | HTML/CSS layouts, JavaScript fundamentals, prototype, DOM, Streamlit | [2026-09](2026-09/) |
 | 2026-10 | JS events & async, TypeScript, React/Next.js, team frontend project (FE-project-teamD), Supabase SSR | [2026-10](2026-10/) |
 | 2026-10 ~ 11 | FastAPI: routing, Jinja2, dependencies, middleware, SQLAlchemy, 4-layer architecture, auth, DDD, team backend project (BE-project-teamD) | [2026-10](2026-10/), [2026-11](2026-11/) |
@@ -49,19 +49,22 @@ Learning
 
 ```text
 00_meta/                         # Learning roadmap, tech stack, achievements
-01_Git-GitHub/                   # Git and GitHub notes
-02_python/                       # Python notes and practice files
-03_numpy-pandas-matplotlib/      # Data analysis basics
-04_machine-learning/             # Machine learning notes and experiments
-05_SQL/                          # SQL and database notes
-2026-09/                         # Monthly TIL notes (from September 2026)
+2026-08/
+  ├── 01_Git-GitHub/             # Git and GitHub notes
+  ├── 02_python/                 # Python notes and practice files
+  ├── 03_numpy-pandas-matplotlib/ # Data analysis basics
+  └── 04_machine-learning/       # ML notebooks (Aug), datasets, uv workspace member
+2026-09/
+  ├── 04_machine-learning/       # ML notebooks (Sep): Attention/Transformer, Hugging Face
+  ├── 05_SQL/                    # SQL and database notes
+  ├── supabase-team-study/       # Supabase team study materials
+  └── YYMMDD_TIL.md ...          # Daily TIL notes (from 2026-09-11)
 2026-10/
 2026-11/
   ├── YYMMDD_TIL.md              # Daily TIL note
   ├── image-N.png                # Screenshots referenced by TILs in the same folder
   ├── images/                    # Diagrams (e.g. SVG) for a TIL
   └── YYMMDD-preview/            # Static demo pages published to the blog
-supabase-team-study/             # Supabase team study materials
 src/                             # Python package scaffold (uv project)
 .github/workflows/               # Blog sync workflow
 ```

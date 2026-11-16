@@ -38,5 +38,5 @@ build-backend = "uv_build"
 
 [tool.uv.workspace]
 members = [
-    "04_machine-learning",
+    "2026-08/04_machine-learning",
 ]
